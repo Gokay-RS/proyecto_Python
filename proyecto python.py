@@ -45,23 +45,32 @@ def filtro_nombre(datos):
         print("EL lanzamiento no se encuentra entre los datos actuales.")
 
 # ------------------- #
-# Función de filtro de busqueda por nº de lanzamiento #
+# Función de filtro de busqueda por nº de lanzamiento
 def filtro_numero(datos):
-    encontrado=False
-    ultimoLanzamiento=datos[len(datos)-1].get("flight_number")
-    intFiltro=int(input("Introduzca el nº del lanzamiento del que quiere saber los datos (1 - %d) "%(ultimoLanzamiento)))-1
-    if(intFiltro<len(datos)-1 and encontrado==False):
+    ultimoLanzamiento=datos[len(datos)-1].get("flight_number")+2 # Variable que almacena el ultimo numero introducible posible
+    #Se solicita el número al usuario junto con una advertencia de que el numero introducido puede no coincider con el de lanzamiento
+    intFiltro=int(input("Introduzca el nº del lanzamiento del que quiere saber los datos (1 - %d) "%(ultimoLanzamiento) +"\n(Puede que el numero introducido no coincida con el número del vuelo, ya que hay numero de vuelos repetidos, o inexsistentes, como 188 (repetido x4) o el 190 (inexistente)\n -> "))-1
+    #Condicion para controlar que no se introduzca un número no valido
+    if(intFiltro<len(datos) and intFiltro>=0):
+        #Muestra de datos
         print("#---------------#")
         print("DATOS: ")
         print(" Nº de lanzamiento: ", datos[intFiltro].get("flight_number"))
         print(" Nombre: ",datos[intFiltro].get("name"))
         print(" Fecha de lanzamiento (UTC - YYYY/MM/DD): ", datos[intFiltro].get("date_utc")[:10].replace("-","/")) #Mostramos la fecha sin los datos horarios
+        #Condicion para saber si el lanzamiento fue exitoso o no
         if(datos[intFiltro].get("success")==False):
+            #En caso de que no fuese exitoso, se muestra el fallo
             print(" Exito en lanzamiento: No exitoso")
             print("\t Detalles: ", datos[intFiltro].get("details"))
         else:
+            #En caso de que si lo fuese, se muestra como exitoso
             print(" Exito en lanzamiento: Exitoso")
         print("#---------------#")
+        #Fin de muestra de datos
+    else:
+        #En caso de que el numero fuese invalido, mostramos un mensaje de error
+        print("No puede introducir un numero inferior o superior a los limites establecidos")
 
 # ------------------- #
 #Creamos la función que muestra el menu
