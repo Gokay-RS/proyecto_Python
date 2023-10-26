@@ -1,4 +1,4 @@
-# SpaceX Launch Data Viewer
+# SpaceXplorer
 
   Este programa de Python te permite buscar y visualizar información sobre lanzamientos de SpaceX a través de la API de SpaceX.
 
