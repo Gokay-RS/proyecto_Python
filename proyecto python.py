@@ -49,7 +49,7 @@ def filtro_nombre(datos):
 def filtro_numero(datos):
     ultimoLanzamiento=datos[len(datos)-1].get("flight_number")+2 # Variable que almacena el ultimo numero introducible posible
     #Se solicita el número al usuario junto con una advertencia de que el numero introducido puede no coincider con el de lanzamiento
-    intFiltro=int(input("Introduzca el nº del lanzamiento del que quiere saber los datos (1 - %d) "%(ultimoLanzamiento) +"\n(Puede que el numero introducido no coincida con el número del vuelo, ya que hay numero de vuelos repetidos, o inexsistentes, como 188 (repetido x4) o el 190 (inexistente)\n -> "))-1
+    intFiltro=int(input("Introduzca el nº del lanzamiento del que quiere saber los datos (1 - %d) "%(ultimoLanzamiento) +"\n(Puede que el numero introducido no coincida con el número del lanzamiento, ya que hay numero de lanzamientos repetidos, o inexsistentes, como 188 (repetido x4) o el 190 (inexistente)\n -> "))-1
     #Condicion para controlar que no se introduzca un número no valido
     if(intFiltro<len(datos) and intFiltro>=0):
         #Muestra de datos
